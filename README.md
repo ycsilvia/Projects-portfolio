@@ -10,4 +10,4 @@ Dataset: https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page
 * Google Cloud Storage
 * Mage
 * Bigquery
-* Building Dashboard
+* Looker Studio: Building Dashboard
