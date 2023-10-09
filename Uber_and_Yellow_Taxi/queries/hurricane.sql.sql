@@ -1,21 +1,16 @@
 
-SELECT weathers.DATE, weathers.HOUR, weathers.HourlyPrecipitation, weathers.HourlyWindSpeed, trips.numbers
-FROM
-(
-SELECT strftime ('%Y-%m-%d',Date) AS DATE, strftime ('%H',Date) AS HOUR, HourlyPrecipitation, HourlyWindSpeed
-FROM hourly_weathers 
-WHERE DATE BETWEEN '2012-10-22' AND '2012-11-07'
-GROUP BY strftime ('%Y-%m-%d',Date), strftime ('%H', Date), HourlyPrecipitation, HourlyWindSpeed
-) weathers
-LEFT JOIN
-(
-SELECT strftime ('%Y-%m-%d',pickup_datetime) AS DATE, strftime ('%H',pickup_datetime) AS HOUR, COUNT(strftime ('%H',pickup_datetime)) as numbers FROM taxi_trips
-WHERE DATE BETWEEN '2012-10-22' AND '2012-11-07'
-GROUP BY strftime ('%Y-%m-%d',pickup_datetime), strftime ('%H',pickup_datetime) 
-union all
-SELECT strftime ('%Y-%m-%d',pickup_datetime) AS DATE, strftime ('%H',pickup_datetime) AS HOUR, COUNT(strftime ('%H',pickup_datetime)) as numbers FROM uber_trips
-WHERE DATE BETWEEN '2012-10-22' AND '2012-11-07'
-GROUP BY strftime ('%Y-%m-%d',pickup_datetime), strftime ('%H',pickup_datetime) 
-) trips
-ON trips.DATE = weathers.DATE AND trips.HOUR = weathers.HOUR
-GROUP BY weathers.DATE, weathers.HOUR, weathers.HourlyPrecipitation, weathers.HourlyWindSpeed, trips.numbers
+WITH hired_trips AS 
+(SELECT strftime('%Y-%m-%d %H',pickup_datetime) AS date
+FROM taxi_trips
+WHERE pickup_datetime BETWEEN '2012-10-22' AND '2012-11-07'
+UNION ALL
+SELECT strftime('%Y-%m-%d %H',pickup_datetime) AS date
+FROM uber_trips
+WHERE pickup_datetime BETWEEN '2012-10-22' AND '2012-11-07')
+
+SELECT strftime('%Y-%m-%d %H',hourly_weathers.date) AS w, COALESCE(COUNT(hired_trips.date),0) AS num, HourlyPrecipitation, HourlyWindSpeed
+FROM hourly_weathers
+LEFT JOIN hired_trips
+ON w = hired_trips.date
+WHERE w BETWEEN '2012-10-22' AND '2012-11-07'
+GROUP BY w
