@@ -1,10 +1,8 @@
 
-SELECT DAY, COUNT(*) FROM
-(SELECT strftime('%Y-%m-%d', pickup_datetime) as DAY from taxi_trips
+SELECT date(pickup_datetime) AS date, COUNT(*) AS num
+FROM (SELECT pickup_datetime FROM taxi_trips
 UNION ALL
-SELECT strftime('%Y-%m-%d', pickup_datetime) as DAY from uber_trips)
-WHERE DAY IN (SELECT strftime ('%Y-%m-%d', DAY) AS DAY FROM daily_weathers
-WHERE DAY between '2014-01-01' AND '2014-12-31'
-ORDER BY (DailyAverageWindSpeed) DESC
-LIMIT 10)
-GROUP BY DAY
+SELECT pickup_datetime FROM uber_trips)
+GROUP BY date
+HAVING date IN (SELECT date(DATE) FROM daily_weathers WHERE DATE BETWEEN '2014-01-01' AND '2015-01-01' ORDER BY DailyAverageWindSpeed DESC LIMIT 10)
+         
