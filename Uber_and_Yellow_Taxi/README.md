@@ -1,4 +1,4 @@
-# Projects: Uber and Yellow Taxi Trip Data Analysis and Visualization -- Understanding Hired Rides in NYC
+# Project: Uber and Yellow Taxi Trip Data Analysis and Visualization -- Understanding Hired Rides in NYC
 
 Using hired-ride trip data from Uber and NYC Yellow cab from January 2009 through June 2015, and joining with local historical weather data, you will be providing a single Jupyter notebook and SQL queries to answer particular questions by downloading and cleaning data, storing the data in a SQLite database, and providing visualizations.
 
