@@ -16,4 +16,5 @@ Using hired-ride trip data from Uber and NYC Yellow cab from January 2009 throug
 
 ## Part 4: Visualizing Data
 
+<img src="visualization\heatmap.png">
 <img src="visualization\average_distance.png">
