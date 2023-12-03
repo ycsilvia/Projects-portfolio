@@ -41,3 +41,7 @@ gross conversion | 0.206250 | -0.0100 | 0.020231 | NaN | 645875.0
 retention | 0.206250 | 0.0100 | 0.054949 | NaN | 4741212.0
 net conversion | 0.206250 | 0.0075 | 0.015602 | NaN | 685325.0
 
+Markdown | Less | Pretty
+--- | --- | ---
+*Still* | `renders` | **nicely**
+1 | 2 | 3
