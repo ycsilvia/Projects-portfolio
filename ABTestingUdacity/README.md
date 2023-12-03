@@ -32,3 +32,12 @@ Evaluation metrics were chosen since there is the possibility of different distr
 # Measuring Variability
 
 
+
+Metrics	Estimator	| dmin	| Standard Deviation	| Scaled Estimator
+0	cookies	40000.000000	3000.0000	NaN	5000.0
+1	cliks	3200.000000	240.0000	NaN	400.0
+2	user-id	660.000000	-50.0000	NaN	82.5
+3	click-through-probability	0.080000	0.0100	NaN	NaN
+4	gross conversion	0.206250	-0.0100	0.020231	NaN
+5	retention	0.530000	0.0100	0.054949	NaN
+6	net conversion	0.109313	0.0075	0.015602	NaN
