@@ -33,6 +33,7 @@ Evaluation metrics were chosen since there is the possibility of different distr
 
 
 Metrics | Estimator | dmin | Standard Deviation | Scaled Estimator | samplesize
+--- | --- | --- | --- | --- | ---
 cookies | 40000 | 3000 | NaN | 5000 | NaN	
 cliks | 3200 | 240 | NaN | 400 | NaN
 user-id | 660 | -50 | NaN | 82.5 | NaN
