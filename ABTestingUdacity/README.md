@@ -42,7 +42,79 @@ gross conversion | 0.206250 | -0.0100 | 0.020231 | NaN | 645875.0
 retention | 0.206250 | 0.0100 | 0.054949 | NaN | 4741212.0
 net conversion | 0.206250 | 0.0075 | 0.015602 | NaN | 685325.0
 
-Markdown | Less | Pretty
---- | --- | ---
-*Still* | `renders` | **nicely**
-1 | 2 | 3
+# Sizing
+## Choosing Number of Samples given Power
+Use an alpha of 0.05 and a beta of 0.2. Make sure you have enough power for each metric.   
+And we applied an online caculator to calculate the sample size: https://www.evanmiller.org/ab-testing/sample-size.html
+
+
+### Gross Conversion
+- Baseline Conversion: 20.625%   
+- Minimum Detectable Effect: 1%   
+- alpha: 5%   
+- beta: 20%   
+- 1 - beta: 80%   
+- sample size = 25,835 enrollments/group   
+- Number of groups = 2 (experiment and control)   
+- total sample size = 51,670 enrollments   
+- clicks/pageview: 3200/40000 = .08 clicks/pageview   
+- pageviews = 645,875   
+### Retention
+- Baseline Conversion: 53%   
+- Minimum Detectable Effect: 1%   
+- alpha: 5%   
+- beta: 20%   
+- 1 - beta: 80%   
+- sample size = 39,155 enrollments/group   
+- Number of groups = 2 (experiment and control)   
+- total sample size = 78,230 enrollments   
+- enrollments/pageview: 660/40000 = .0165 enrollments/pageview   
+- pageviews = 78,230/.0165 = 4,741,212   
+### Net Conversion
+- Baseline Conversion: 10.9313%   
+- Minimum Detectable Effect: .75%   
+- alpha: 5%   
+- beta: 20%   
+- 1 - beta: 80%   
+- sample size = 27,413 enrollments/group   
+- Number of groups = 2 (experiment and control)   
+- total sample size = 54,826   
+- clicks/pageview: 3200/40000 = .08 clicks/pageview   
+- pageviews = 685,325   
+
+
+Metrics | Estimator | dmin | Standard Deviation | Scaled Estimator | samplesize
+--- | --- | --- | --- | --- | ---
+cookies | 40000 | 3000 | NaN | 5000 | NaN	
+cliks | 3200 | 240 | NaN | 400 | NaN
+user-id | 660 | -50 | NaN | 82.5 | NaN
+click-through-probability | 0.080000 | 0.0100 | NaN | NaN | NaN
+gross conversion | 0.206250 | -0.0100 | 0.020231 | NaN | 645875.0
+retention | 0.206250 | 0.0100 | 0.054949 | NaN | 4741212.0
+net conversion | 0.206250 | 0.0075 | 0.015602 | NaN | 685325.0
+
+
+## Choosing Duration vs. Exposure
+If we divert 100% of traffic, given 40,000 page views per day, the experiment would take ~ 119 days. If we eliminate retention, we are left with Gross Conversion and Net Conversion. This reduces the number of required pageviews to 685,325, and an ~ 18 day experiment with 100% diversion and ~ 35 days given 50% diversion.   
+
+We see that we would need to run the experiment for about 119 days in order to test all three hypotheses (and this does not even take into account the 14 additional days (free trial period) we have to wait until we can evaluate the experiment). Such a duration (esp. with 100% traffic diverted to it) appears to be very risky. First, we cannot perfom any other experiment during this period (opportunity costs). Secondly, if the treatment harms the user experience (frustrated students, inefficient coaching resources) and decreases conversion rates, we won't notice it (or cannot really say so) for more than four months (business risk). Consequently, it seems more reasonable to only test the first and third hypothesis and to discard retention as an evaluation metric. Especially since net conversion is a product of rentention and gross conversion, so that we might be able to draw inferences about the retention rate from the two remaining evaluation metrics.   
+
+So, how much traffic should we divert to the experiment? Given the considerations above, we want the experiment to run relatively fast and for not more than a few weeks. Also, as the nature of the experiment itself does not seem to be very risky (e.g. the treatment doesn't involve a feature that is critical with regards to potential media coverage), we can be confident in diverting a high percentage of traffic to the experiment. Still, since there is always the potential that something goes wrong during implemention, we may not want to divert all of our traffic to it. Hence, 80% (22 days) would seem to be quite reasonable. However, when we look at the data provided by Udacity (see 4.1) we see that it takes 37 days to collect 690,203 pageviews, meaning that they most likely diverted somewhere between 45% and 50% of their traffic to the experiment.
+
+for the experiment using 50% traffic with gross conversion and net conversion, we need:  34  days
+for the experiment using 45% traffic with gross conversion and net conversion, we need:  38  days
+
+It seems that 38 days are little bit longer, so we will divert 50% traffic for the experiment with gross conversion and net conversion.
+
+# Analysis
+The meaning of each column is:
+
+## Sanity Checks
+Start by checking whether your invariant metrics are equivalent between the two groups.
+
+
+Metrics | CI_lower | CI_upper | obs  | passes or not
+--- | --- | --- | --- | ---
+Cookies | 0.49882 | 0.50118 | 0.500640 | 1
+Clicks | 0.495884 | 0.504116 | 0.500467 | 1
+CTP | -0.001296 | 0.001296 | -0.000057 | 1
