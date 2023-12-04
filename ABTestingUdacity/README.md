@@ -128,3 +128,19 @@ Metrics | CI_lower | CI_upper | obs  | stats_sig?  | dmin | prac_sig?
 Gross_Conversion | -0.02912 | -0.011989	 | -0.020555 | 1 | -0.0100 | 1
 Net_Conversion | -0.011604	 | 0.001857 | -0.004874	 | 0 | 0.0075 | 0 
 
+# Run Sign Tests
+For each evaluation metric, do a sign test using the day-by-day breakdown.
+
+Metric | p-value for sign test | Statistically Significant @ alpha .05?
+--- | --- | --- 
+Gross Conversion | 0.0026 | Yes
+Net Conversion | 0.6776 | No
+
+
+## Make a Recommendation
+
+In this experimenr, the observed gross conversion in the experiment group is around 2.06% less than the gross conversion observed in the control group. Also, we see that values in the confidence interval are congruent with a negative effect. Since these values are less than the dmin (the smallest impact size considered to be business-related), the impact seems to be statiscally and practically significant. 
+
+The observed net conversion in the experiment group is around 0.49% less than the net conversion observed in the control group. Therefore, for this test, the impact is not significant neither in stastics or business issue.
+
+Based on these results, we can assume that this change may indeed help to set clearer expectations for students upfront. However, the results show that only gross conversion is practically and statiscally significant, not both gross and net converison. So we can further assume that this experiment is effective for decreasing the free trial enrollment, but payments cannot be converted. Therefore, my recommend is not to launch, instead, we should do some further experiments.
