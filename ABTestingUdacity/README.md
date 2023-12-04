@@ -124,7 +124,7 @@ CTP | -0.001296 | 0.001296 | -0.000057 | 1
 Next, for your evaluation metrics, calculate a confidence interval for the difference between the experiment and control groups, and check whether each metric is statistically and/or practically significance. A metric is statistically significant if the confidence interval does not include 0 (that is, you can be confident there was a change), and it is practically significant if the confidence interval does not include the practical significance boundary (that is, you can be confident there is a change that matters to the business.)
 
 Metrics | CI_lower | CI_upper | obs  | stats_sig?  | dmin | prac_sig?
---- | --- | --- | --- | --- | --- | --- | ---
+--- | --- | --- | --- | --- | --- | --- 
 Gross_Conversion | -0.02912 | -0.011989	 | -0.020555 | 1 | -0.0100 | 1
 Net_Conversion | -0.011604	 | 0.001857 | -0.004874	 | 0 | 0.0075 | 0 
 
