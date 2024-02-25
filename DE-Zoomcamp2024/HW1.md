@@ -123,6 +123,8 @@ ORDER BY 2 DESC
 LIMIT 1
 ```
 
+`docker-compose down`
+
 ## Terraform
 
 In this section homework we'll prepare the environment by creating resources in GCP with Terraform.
