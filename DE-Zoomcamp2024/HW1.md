@@ -21,7 +21,7 @@ Which tag has the following text? - *Automatically remove the container when it 
 - `--delete`
 - `--rc`
 - `--rmc`
-<font color="red"> - `--rm` </font>
+- <font color="red">  `--rm` </font>
 
 
 ## Question 2. Understanding docker first run 
