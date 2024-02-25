@@ -29,7 +29,7 @@ variable "bq_dataset_name" {
 variable "gcs_bucket_name" {
   description = "Storage Bucket Name for Week-1 Homework"
   #Update the below to a unique bucket name
-  default = "hw1-bucket"
+  default = "windy-winter-398119-hw1-bucket"
 }
 
 variable "gcs_storage_class" {
