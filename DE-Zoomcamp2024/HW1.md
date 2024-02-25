@@ -109,12 +109,19 @@ We want the name of the zone, not the id.
 
 Note: it's not a typo, it's `tip` , not `trip`
 
-- Central Park
-- Jamaica
 - JFK Airport
-- Long Island City/Queens Plaza
 
-
+```
+SELECT zdo."Zone" AS zone_dropoff, t.tip_amount
+FROM public.green_taxi_trips t
+JOIN zones zpu ON t."PULocationID" = zpu."LocationID"
+JOIN zones zdo ON t."DOLocationID" = zdo."LocationID"
+WHERE DATE(t."lpep_pickup_datetime") >= '2019-09-01'
+AND DATE(t."lpep_pickup_datetime") <= '2019-09-30'
+AND zpu."Zone" = 'Astoria'
+ORDER BY 2 DESC
+LIMIT 1
+```
 
 ## Terraform
 
