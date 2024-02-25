@@ -74,7 +74,12 @@ Tip: For every trip on a single day, we only care about the trip with the longes
 
 - 2019-09-26
 
-`SELECT DATE(lpep_pickup_datetime), MAX(trip_distance) FROM public.green_taxi_trips GROUP BY 1 ORDER BY 2 DESC`
+```
+SELECT DATE(lpep_pickup_datetime), MAX(trip_distance) 
+FROM public.green_taxi_trips 
+GROUP BY 1 
+ORDER BY 2 DESC
+```
 
 ## Question 5. Three biggest pick up Boroughs
 
