@@ -46,7 +46,14 @@ You will also need the dataset with zones:
 
 Download this data and put it into Postgres (with jupyter notebooks or with a pipeline)
 
-`docker run -it -e POSTGRES_USER="root" -e POSTGRES_PASSWORD="root" -e POSTGRES_DB="ny_taxi" -v C:\Users\Silvia\Downloads\deHW1\ny_taxi_postgres_data:/var/lib/postgresql/data -p 5432:5432 postgres:13`
+I will use docker-compose to set the environment.
+so a yaml file 
+`docker-compose up`
+use python script to ingest data
+`python ingest_data_taxi.py --user=root --password=root --host=localhost --port=5432 --db=ny_taxi --table_name=green_taxi_trips --url="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2019-09.csv.gz"`
+
+`python ingest_data_zone.py --user=root --password=root --host=localhost --port=5432 --db=ny_taxi --table_name=zones --url="https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv"`
+
 
 ## Question 3. Count records 
 
