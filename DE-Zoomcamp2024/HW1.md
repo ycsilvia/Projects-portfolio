@@ -88,10 +88,19 @@ Consider lpep_pickup_datetime in '2019-09-18' and ignoring Borough has Unknown
 Which were the 3 pick up Boroughs that had a sum of total_amount superior to 50000?
  
 - "Brooklyn" "Manhattan" "Queens"
-- "Bronx" "Brooklyn" "Manhattan"
-- "Bronx" "Manhattan" "Queens" 
-- "Brooklyn" "Queens" "Staten Island"
 
+```
+SELECT zpu."Borough", SUM(t."total_amount") AS sum_total_amount
+FROM public.green_taxi_trips t
+JOIN zones zpu ON t."PULocationID" = zpu."LocationID"
+JOIN zones zdo ON t."DOLocationID" = zdo."LocationID"
+WHERE DATE(lpep_pickup_datetime)='2019-09-18'
+AND zpu."Borough" != 'Unknown'
+AND zdo."Borough" != 'Unknown'
+GROUP BY 1
+HAVING SUM(t."total_amount") > 50000
+ORDER BY sum_total_amount
+```
 
 ## Question 6. Largest tip
 
