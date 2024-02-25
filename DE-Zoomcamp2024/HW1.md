@@ -62,9 +62,8 @@ Tip: started and finished on 2019-09-18.
 Remember that `lpep_pickup_datetime` and `lpep_dropoff_datetime` columns are in the format timestamp (date and hour+min+sec) and not in date.
 
 - 15767
-- 15612
-- 15859
-- 89009
+
+`SELECT COUNT(*) FROM public.green_taxi_trips WHERE DATE(lpep_pickup_datetime)='2019-09-18'`
 
 ## Question 4. Longest trip for each day
 
@@ -73,11 +72,9 @@ Use the pick up time for your calculations.
 
 Tip: For every trip on a single day, we only care about the trip with the longest distance. 
 
-- 2019-09-18
-- 2019-09-16
 - 2019-09-26
-- 2019-09-21
 
+`SELECT DATE(lpep_pickup_datetime), MAX(trip_distance) FROM public.green_taxi_trips GROUP BY 1 ORDER BY 2 DESC`
 
 ## Question 5. Three biggest pick up Boroughs
 
