@@ -30,6 +30,8 @@ What is version of the package *wheel* ?
 
 - 0.42.0
 
+`docker run -it --entrypoint=bash python:3.9`
+`pip list`
 
 # Prepare Postgres
 
