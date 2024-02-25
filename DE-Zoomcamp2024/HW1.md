@@ -47,7 +47,7 @@ You will also need the dataset with zones:
 Download this data and put it into Postgres (with jupyter notebooks or with a pipeline)
 
 I created a yaml file to set up the required docker environment with postgresql and pgadmin in the container. Then run `docker-compose up`.
-Then, I ingest data into a PostgreSQL database using Python scripts with the 2 .py file.
+Then, I ingest data into a PostgreSQL database using Python scripts with the 2 .py file.   
 `python ingest_data_taxi.py --user=root --password=root --host=localhost --port=5432 --db=ny_taxi --table_name=green_taxi_trips --url="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2019-09.csv.gz"`
 
 `python ingest_data_zone.py --user=root --password=root --host=localhost --port=5432 --db=ny_taxi --table_name=zones --url="https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv"`
