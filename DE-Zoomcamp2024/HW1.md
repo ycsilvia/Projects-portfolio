@@ -46,6 +46,7 @@ You will also need the dataset with zones:
 
 Download this data and put it into Postgres (with jupyter notebooks or with a pipeline)
 
+`docker run -it -e POSTGRES_USER="root" -e POSTGRES_PASSWORD="root" -e POSTGRES_DB="ny_taxi" -v C:\Users\Silvia\Downloads\deHW1\ny_taxi_postgres_data:/var/lib/postgresql/data -p 5432:5432 postgres:13`
 
 ## Question 3. Count records 
 
