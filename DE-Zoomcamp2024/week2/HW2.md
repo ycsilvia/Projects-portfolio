@@ -30,6 +30,18 @@ The goal will be to construct an ETL pipeline that loads the data, performs some
 - Write your data as Parquet files to a bucket in GCP, partioned by `lpep_pickup_date`. Use the `pyarrow` library!
 - Schedule your pipeline to run daily at 5AM UTC.
 
+```
+git clone https://github.com/mage-ai/mage-zoomcamp.git mage-zoomcamp
+
+cd mage-zoomcamp
+
+cp dev.env .env
+
+docker compose build
+
+docker compose up
+```
+
 ### Questions
 
 ## Question 1. Data Loading
