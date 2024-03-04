@@ -139,27 +139,18 @@ def test_output(output, *args) -> None:
 Once the dataset is loaded, what's the shape of the data?
 
 * 266,855 rows x 20 columns
-* 544,898 rows x 18 columns
-* 544,898 rows x 20 columns
-* 133,744 rows x 20 columns
 
 ## Question 2. Data Transformation
 
 Upon filtering the dataset where the passenger count is greater than 0 _and_ the trip distance is greater than zero, how many rows are left?
 
-* 544,897 rows
-* 266,855 rows
 * 139,370 rows
-* 266,856 rows
 
 ## Question 3. Data Transformation
 
 Which of the following creates a new column `lpep_pickup_date` by converting `lpep_pickup_datetime` to a date?
 
-* `data = data['lpep_pickup_datetime'].date`
-* `data('lpep_pickup_date') = data['lpep_pickup_datetime'].date`
 * `data['lpep_pickup_date'] = data['lpep_pickup_datetime'].dt.date`
-* `data['lpep_pickup_date'] = data['lpep_pickup_datetime'].dt().date()`
 
 ## Question 4. Data Transformation
 
