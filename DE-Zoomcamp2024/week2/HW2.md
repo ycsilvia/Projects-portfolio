@@ -25,6 +25,7 @@ docker compose build
 
 docker compose up
 ```
+navigate to http://localhost:6789/
 
 - Create a new pipeline, call it `green_taxi_etl`
 
@@ -111,7 +112,12 @@ def transform(data, *args, **kwargs):
     data = data[data['passenger_count'] > 0]
     data = data[data['trip_distance'] > 0]
     data = data.dropna(subset=['VendorID'])
-    data = data.rename(columns={"VendorID": "vendor_id"})
+    data = data.rename(columns={
+        'VendorID': 'vendor_id',
+        'RatecodeID': 'ratecode_id',
+        'PULocationID': 'pu_location_id',
+        'DOLocationID': 'do_location_id'
+        })
     data['lpep_pickup_date'] = data['lpep_pickup_datetime'].dt.date
 
     return data
@@ -127,6 +133,59 @@ def test_output(output, *args) -> None:
 ```
 
 - Using a Postgres data exporter (SQL or Python), write the dataset to a table called `green_taxi` in a schema `mage`. Replace the table if it already exists.
+
+in file `io_config.yml`, add
+
+```
+dev:
+  POSTGRES_CONNECT_TIMEOUT: 10
+  POSTGRES_DBNAME: "{{ env_var('POSTGRES_DBNAME') }}"
+  POSTGRES_SCHEMA: "{{ env_var('POSTGRES_SCHEMA') }}"
+  POSTGRES_USER: "{{ env_var('POSTGRES_USER') }}"
+  POSTGRES_PASSWORD: "{{ env_var('POSTGRES_PASSWORD') }}"
+  POSTGRES_HOST: "{{ env_var('POSTGRES_HOST') }}"
+  POSTGRES_PORT: "{{ env_var('POSTGRES_PORT') }}"
+```
+
+- Postgres (SQL Loader)
+schema name: mage ;
+table name: green_taxi ;
+write policy: replace.
+querry: select * from {{ df_1 }}
+
+- Google (Python)
+```
+import pyarrow as pa
+import pyarrow.parquet as pq 
+import os
+
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/home/src/google-credential-file.json"
+
+bucket_name = 'mage-zoomcamp-drux'
+project_id = "drux-de-zoomcamp"
+
+table_name = "green_taxi_data"
+
+root_path = f'{bucket_name}/{table_name}'
+
+if 'data_exporter' not in globals():
+    from mage_ai.data_preparation.decorators import data_exporter
+
+@data_exporter
+def export_data(data, *args, **kwargs) -> None:
+  
+    table = pa.Table.from_pandas(data)
+
+    gcs = pa.fs.GcsFileSystem()
+
+    pq.write_to_dataset(
+        table,
+        root_path=root_path,
+        partition_cols=['lpep_pickup_date'],
+        filesystem=gcs
+    )
+```
+
 - Write your data as Parquet files to a bucket in GCP, partioned by `lpep_pickup_date`. Use the `pyarrow` library!
 - Schedule your pipeline to run daily at 5AM UTC.
 
@@ -156,18 +215,12 @@ Which of the following creates a new column `lpep_pickup_date` by converting `lp
 
 What are the existing values of `VendorID` in the dataset?
 
-* 1, 2, or 3
 * 1 or 2
-* 1, 2, 3, 4
-* 1
 
 ## Question 5. Data Transformation
 
 How many columns need to be renamed to snake case?
 
-* 3
-* 6
-* 2
 * 4
 
 ## Question 6. Data Exporting
