@@ -153,6 +153,8 @@ table name: green_taxi ;
 write policy: replace.
 querry: select * from {{ df_1 }}
 
+- Write your data as Parquet files to a bucket in GCP, partioned by `lpep_pickup_date`. Use the `pyarrow` library!
+
 - Google (Python)
 ```
 import pyarrow as pa
@@ -161,8 +163,8 @@ import os
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/home/src/google-credential-file.json"
 
-bucket_name = 'mage-zoomcamp-drux'
-project_id = "drux-de-zoomcamp"
+bucket_name = 'mage-zoomcamp1112'
+project_id = "windy-winter-398119"
 
 table_name = "green_taxi_data"
 
@@ -186,10 +188,7 @@ def export_data(data, *args, **kwargs) -> None:
     )
 ```
 
-- Write your data as Parquet files to a bucket in GCP, partioned by `lpep_pickup_date`. Use the `pyarrow` library!
 - Schedule your pipeline to run daily at 5AM UTC.
-
-
 
 ### Questions
 
@@ -228,9 +227,6 @@ How many columns need to be renamed to snake case?
 Once exported, how many partitions (folders) are present in Google Cloud?
 
 * 96
-* 56
-* 67
-* 108
 
 ## Submitting the solutions
 
