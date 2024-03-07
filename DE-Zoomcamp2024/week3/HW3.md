@@ -11,6 +11,8 @@ Create an external table using the Green Taxi Trip Records Data for 2022. </br>
 Create a table in BQ using the Green Taxi Trip Records for 2022 (do not partition or cluster this table). </br>
 </p>
 
+export GOOGLE_APPLICATION_CREDENTIALS="C:\Users\Silvia\Downloads\windy-winter-398119-0f9bd985685c.json"
+
 ## Question 1:
 Question 1: What is count of records for the 2022 Green Taxi Data??
 - 65,623,481
