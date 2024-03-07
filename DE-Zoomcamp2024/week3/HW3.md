@@ -11,7 +11,20 @@ Create an external table using the Green Taxi Trip Records Data for 2022. </br>
 Create a table in BQ using the Green Taxi Trip Records for 2022 (do not partition or cluster this table). </br>
 </p>
 
-export GOOGLE_APPLICATION_CREDENTIALS="C:\Users\Silvia\Downloads\windy-winter-398119-0f9bd985685c.json"
+Step 1 - Load green data into cloud storage
+
+- download the data localy from the following link into folder "green_tripdata_2022":
+https://d37ci6vzurychx.cloudfront.net/trip-data/green_tripdata_2022-{month}.parquet
+
+- Load the data directly to cloud storage without any transformation
+
+- load_data_to_gcp.py
+
+```
+pip install google-cloud-storage
+set GOOGLE_APPLICATION_CREDENTIALS="C:\Users\Silvia\Downloads\windy-winter-398119-0f9bd985685c.json"
+python load_data_to_gcp.py
+```
 
 ## Question 1:
 Question 1: What is count of records for the 2022 Green Taxi Data??
