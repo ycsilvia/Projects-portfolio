@@ -9,7 +9,8 @@ def write_to_bucket(filename, bucket_name, folder_name):
     bucket = storage_client.get_bucket(bucket_name)
 
     sub_file = filename.split('/')
-    destination_blob = bucket.blob(f'{folder_name}/{sub_file[1]}')
+    # The destination blob is just the name of our file into cloud storage
+    destination_blob = bucket.blob(f'{folder_name}/{sub_file[-1]}')
 
     destination_blob.upload_from_filename(filename)
     print(f"file {filename} uploaded to {destination_blob}")
@@ -17,15 +18,15 @@ def write_to_bucket(filename, bucket_name, folder_name):
 
 def extract_data(url, month):
     """Doanload the data from the url localy"""
-    file_name = f"green_data/green_tripdata_2022-{month}.parquet"
-    os.system(f'wget {url} -O {file_name}')
+    file_name = f"C:/Users/Silvia/Downloads/green_tripdata_2022/green_tripdata_2022-{month}.parquet"
+    os.system(f'curl -o {url} -O {file_name}')
     return file_name
 
 
 def main():
     """Main for the program"""
     # Name of the bucket
-    bucket_name = 'de-zoomcamp-bucket-drux'
+    bucket_name = 'de-hw3'
     # folder name
     folder_name = 'green_data_2022'
     semi_url = "https://d37ci6vzurychx.cloudfront.net/trip-data/green_tripdata_2022"
