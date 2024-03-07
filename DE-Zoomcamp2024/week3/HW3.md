@@ -19,12 +19,17 @@ https://d37ci6vzurychx.cloudfront.net/trip-data/green_tripdata_2022-{month}.parq
 - Load the data directly to cloud storage without any transformation
 
 - load_data_to_gcp.py
+- google credential.json file
 
 ```
 pip install google-cloud-storage
 set GOOGLE_APPLICATION_CREDENTIALS="C:\Users\Silvia\Downloads\windy-winter-398119-0f9bd985685c.json"
 python load_data_to_gcp.py
 ```
+
+Step 2 - Explore in BigQuery
+
+-bigquery-hw.sql
 
 ## Question 1:
 Question 1: What is count of records for the 2022 Green Taxi Data??
