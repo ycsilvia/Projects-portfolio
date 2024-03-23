@@ -14,10 +14,10 @@ with tripdata as
 select
     -- identifiers
     {{ dbt_utils.generate_surrogate_key(['vendor_id', 'pickup_datetime']) }} as tripid,
-    {{ dbt.safe_cast("vendor_id", api.Column.translate_type("integer")) }} as vendor_id,
-    {{ dbt.safe_cast("rate_code", api.Column.translate_type("integer")) }} as rate_code,
-    {{ dbt.safe_cast("pickup_location_id", api.Column.translate_type("integer")) }} as pickup_location_id,
-    {{ dbt.safe_cast("dropoff_location_id", api.Column.translate_type("integer")) }} as dropoff_location_id,
+    {{ dbt.safe_cast("vendor_id", api.Column.translate_type("integer")) }} as vendorid,
+    {{ dbt.safe_cast("rate_code", api.Column.translate_type("integer")) }} as ratecodeid,
+    {{ dbt.safe_cast("pickup_location_id", api.Column.translate_type("integer")) }} as pickup_locationid,
+    {{ dbt.safe_cast("dropoff_location_id", api.Column.translate_type("integer")) }} as dropoff_locationid,
     
     -- timestamps
     cast(pickup_datetime as timestamp) as pickup_datetime,
@@ -36,7 +36,7 @@ select
     cast(tip_amount as numeric) as tip_amount,
     cast(tolls_amount as numeric) as tolls_amount,
     cast(ehail_fee as numeric) as ehail_fee,
-    cast(imp_surcharge as numeric) as imp_surcharge,
+    cast(imp_surcharge as numeric) as improvement_surcharge,
     cast(total_amount as numeric) as total_amount,
     coalesce({{ dbt.safe_cast("payment_type", api.Column.translate_type("integer")) }},0) as payment_type,
     {{ get_payment_type_description("payment_type") }} as payment_type_description
