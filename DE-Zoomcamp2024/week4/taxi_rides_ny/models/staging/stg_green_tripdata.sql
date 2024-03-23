@@ -7,7 +7,7 @@
 with tripdata as 
 (
   select *,
-    row_number() over(partition by vendor_id, lpep_pickup_datetime) as rn
+    row_number() over(partition by vendor_id, pickup_datetime) as rn
   from {{ source('staging','green_tripdata') }}
   where vendor_id is not null 
 )
@@ -36,7 +36,7 @@ select
     cast(tip_amount as numeric) as tip_amount,
     cast(tolls_amount as numeric) as tolls_amount,
     cast(ehail_fee as numeric) as ehail_fee,
-    cast(improvement_surcharge as numeric) as improvement_surcharge,
+    cast(imp_surcharge as numeric) as imp_surcharge,
     cast(total_amount as numeric) as total_amount,
     coalesce({{ dbt.safe_cast("payment_type", api.Column.translate_type("integer")) }},0) as payment_type,
     {{ get_payment_type_description("payment_type") }} as payment_type_description
