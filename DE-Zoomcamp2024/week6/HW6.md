@@ -30,6 +30,9 @@ docker-compose up
 
 (Add `-d` if you want to run in detached mode)
 
+first, execute the container : 'docker exec -it redpanda-1 bash'
+then, then execute the help command : 'rpk help'
+finaly, check the version : 'rpk version'
 
 ## Question 1: Redpanda version
 
