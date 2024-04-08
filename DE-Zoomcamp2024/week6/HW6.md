@@ -46,6 +46,9 @@ then, then execute the help command : `rpk help`
 
 finaly, check the version : `rpk version`
 
+(alternative way: `docker exec -it redpanda-1 bash -c "rpk help"`
+`docker exec -it redpanda-1 bash -c "rpk version"`)
+
 result: **v22.3.5 (rev 28b2443)**
 
 ## Question 2. Creating a topic
@@ -59,6 +62,15 @@ Read the output of `help` and based on it, create a topic with name `test-topic`
 
 What's the output of the command for creating a topic? Include the entire output in your answer.
 
+`rpk topic create test-topic`
+
+(alternative way: `docker exec -it redpanda-1 bash -c "rpk topic create test-topic"`)
+
+result: 
+'''
+TOPIC       STATUS
+test-topic  OK
+'''
 
 ## Question 3. Connecting to the Kafka server
 
