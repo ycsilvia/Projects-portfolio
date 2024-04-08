@@ -67,10 +67,10 @@ What's the output of the command for creating a topic? Include the entire output
 (alternative way: `docker exec -it redpanda-1 bash -c "rpk topic create test-topic"`)
 
 result: 
-'''
+```
 TOPIC       STATUS
 test-topic  OK
-'''
+```
 
 ## Question 3. Connecting to the Kafka server
 
