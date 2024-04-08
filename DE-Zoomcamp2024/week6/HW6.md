@@ -41,7 +41,9 @@ Find out what you need to execute based on the `help` output.
 What's the version, based on the output of the command you executed? (copy the entire version)
 
 first, execute the container : `docker exec -it redpanda-1 bash`
+
 then, then execute the help command : `rpk help`
+
 finaly, check the version : `rpk version`
 
 result: **v22.3.5 (rev 28b2443)**
